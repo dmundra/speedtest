@@ -12,8 +12,10 @@ import sys
 
 def main():
   creds = None
-  if os.path.exists("credentials.json"):
-    creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", [])
+  __location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+  if os.path.exists(os.path.join(__location__, "credentials.json")):
+    creds = ServiceAccountCredentials.from_json_keyfile_name(os.path.join(__location__, "credentials.json"), [])
 
   try:
     service = build("sheets", "v4", credentials=creds)
