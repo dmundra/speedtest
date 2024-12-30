@@ -27,7 +27,7 @@ def main():
     
     values = [[
       sys.argv[1],
-      output_json["server"]["id"],
+      int(output_json["server"]["id"]),
       output_json["server"]["name"],
       output_json["timestamp"],
       output_json["server"]["d"],
@@ -37,7 +37,7 @@ def main():
       output_json["client"]["ip"],
     ]]
 
-    body = {'values': values}
+    body = {"values": values}
     result = service.spreadsheets().values().append(
         spreadsheetId="1Lle-HhKmeC5Q08U6GeLQjtsfP6GV4V7x8RacQws-jzA", range="Sheet1!A1:J",
         valueInputOption="RAW", body=body).execute()
